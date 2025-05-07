@@ -874,8 +874,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- STEP 3: CALL BACKEND API ---
         // !!! IMPORTANT: Replace with your DEPLOYED backend URL !!!
-        // const backendUrl = 'https://your-render-app-name.onrender.com/simulate'; // Example for Render deployment
-        const backendUrl = 'http://127.0.0.1:5001/simulate'; // For LOCAL testing with backend on port 5001
+        const backendUrl = 'https://donor-optimization-test.onrender.com'; 
+        // const backendUrl = 'http://127.0.0.1:5001/simulate'; // For LOCAL testing with backend on port 5001
 
         try {
             const response = await fetch(backendUrl, {
