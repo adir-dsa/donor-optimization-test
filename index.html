@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ImpactTier Optimizer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>ImpactTier Optimizer</h1>
+        <p>Design Smarter Donation Tiers, Maximize Your Impact.</p>
+    </header>
+
+    <main>
+        <!-- Module 0: Mode Selection -->
+        <section id="modeSelection">
+            <h2>Get Started</h2>
+            <button id="btnLoadSample">Explore with Sample Scenario</button>
+            <button id="btnStartUser">Analyze Your Organization's Data</button>
+            <div id="sampleScenarioSelector" style="display:none;">
+                <label for="sampleScenarios">Choose a Sample:</label>
+                <select id="sampleScenarios">
+                    <option value="artsGroup">Small Community Arts Group</option>
+                    <option value="ecoNgo">Environmental Advocacy NGO</option>
+                     <!-- Add other sample scenarios here -->
+                </select>
+                <button id="btnConfirmSample">Load Sample</button>
+            </div>
+        </section>
+
+        <div id="appContent" style="display:none;">
+            <!-- Module 1 & 2: Donor Personas -->
+            <section id="donorPersonas">
+                <h2>1. Understand Your Donors (Archetypes)</h2>
+                <p class="didactic">Donors are motivated by Mission Impact ($\alpha$), Private Perks ($\beta$), and Social Recognition ($\gamma$). Define your donor archetypes and their preference weights (0-1 scale) and estimated percentage in your donor base (percentages must sum to 1).</p>
+                <div id="personasContainer">
+                    <!-- Personas will be added here by JS -->
+                </div>
+                <button id="btnAddPersona">Add Archetype</button>
+            </section>
+
+            <!-- Module 3: Contribution Tiers -->
+            <section id="contributionTiers">
+                <h2>2. Design Your Contribution Tiers</h2>
+                <p class="didactic">Define each tier's price (P<sub>k</sub>), assign scores for private benefits (B<sub>k</sub>) and social signaling (S<sub>k</sub>) (e.g., 0-10 scale), and its cost to your organization (c<sub>k</sub>). Also, select which donor states this tier is available to.</p>
+                <div id="tiersContainer">
+                    <!-- Tiers will be added here by JS -->
+                </div>
+                <button id="btnAddTier">Add Tier</button>
+            </section>
+
+            <!-- Module 4: Donor Lifecycle Model -->
+            <section id="donorLifecycle">
+                <h2>3. Map the Donor Journey</h2>
+                <div id="lifecycleStates">
+                    <h3>3a. Define Lifecycle States</h3>
+                    <p class="didactic">List the stages of engagement for your donors (e.g., Visitor, Member). Default states are provided.</p>
+                    <div id="statesContainer">
+                        <!-- States will be added here by JS -->
+                    </div>
+                    <button id="btnAddState">Add State</button>
+                </div>
+                <div id="baselineTransitions">
+                    <h3>3b. Estimate Baseline State Transitions (Probabilities)</h3>
+                    <p class="didactic">For each state, what's the probability (0-1) of a donor transitioning to another state OR remaining in the current state *naturally* in one period (e.g., a year), without specific tier influence? Each row's probabilities must sum exactly to 1.</p>
+                    <div id="baselineTransitionsTableContainer"></div>
+                </div>
+                <div id="tierInfluences">
+                    <h3>3c. Define Tier Influences on Transitions</h3>
+                    <p class="didactic">For each tier, how does it modify the likelihood of transitions? Enter a multiplier (e.g., 1.2 for 20% more likely, 0.8 for 20% less likely, 1 for no change). The resulting probabilities will be automatically renormalized by the simulation engine.</p>
+                    <div id="tierInfluencesContainer"></div>
+                </div>
+            </section>
+
+            <!-- Module 5: Simulation & Optimization Insights -->
+            <section id="simulation">
+                <h2>4. Simulate Your Impact</h2>
+                <div>
+                    <label for="initialDonors">Initial Donors per State (JSON format, e.g., {"Visitor": 1000, "Member": 200}):</label>
+                    <textarea id="initialDonorsInput" rows="3">{"Visitor": 1000, "Member": 200, "Sustainer": 50, "Major Donor": 10}</textarea>
+                </div>
+                <div>
+                    <label for="discountFactor">Discount Factor ($\delta$) (0-1, e.g., 0.95 for 5% discount rate):</label>
+                    <input type="number" id="discountFactor" value="0.95" step="0.01" min="0" max="1">
+                </div>
+                <div>
+                    <label for="simulationPeriods">Number of Periods to Simulate (e.g., years):</label>
+                    <input type="number" id="simulationPeriods" value="5" min="1">
+                </div>
+                <button id="btnRunSimulation">Run Simulation</button>
+
+                <div id="resultsArea" style="display:none;">
+                    <h3>Simulation Results:</h3>
+                    <p><strong>Total Expected Net Present Value (NPV): <span id="totalNPV"></span></strong></p>
+                    <h4>Projected Net Contributions Per Period:</h4>
+                    <ul id="periodContributions"></ul>
+                    <h4>Projected Donor Counts Per State Per Period:</h4>
+                     <div id="donorCountsLegend"></div> <!-- Legend generated here -->
+                    <div id="donorCountsChart">
+                         <!-- Chart will be generated here by JS -->
+                    </div>
+                    <h4>Optimal Tier Choices by Persona & State (Policy k*):</h4>
+                    <div id="policyTableContainer"></div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>Prototype by Business Economist AI & Claude</p>
+        <button id="btnSaveData" style="display:none;">Save Current Setup</button>
+        <button id="btnClearData" style="display:none;">Clear Saved Setup</button>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

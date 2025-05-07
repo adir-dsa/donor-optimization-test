@@ -1,0 +1,466 @@
+/* style.css - Enhanced Version */
+:root {
+    --primary-color: #007bff; /* Blue */
+    --primary-hover: #0056b3;
+    --secondary-color: #6c757d; /* Grey */
+    --success-color: #28a745; /* Green */
+    --success-hover: #218838;
+    --danger-color: #dc3545; /* Red */
+    --light-bg: #f8f9fa;
+    --medium-bg: #e9ecef;
+    --dark-text: #212529;
+    --medium-text: #495057;
+    --light-text: #6c757d;
+    --border-color: #dee2e6;
+    --white-color: #fff;
+    --input-bg: #fff;
+    --shadow-sm: 0 .125rem .25rem rgba(0,0,0,.075);
+    --shadow-md: 0 .5rem 1rem rgba(0,0,0,.15);
+    --border-radius: 0.25rem;
+    /* Add variables for chart colors if using dynamic legend colors */
+     /* --state-0-bg-color: #007bff;
+     --state-1-bg-color: #6f42c1;
+     --state-2-bg-color: #20c997;
+     --state-3-bg-color: #fd7e14; */
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    background-color: var(--light-bg);
+    color: var(--dark-text);
+}
+
+header {
+    background: var(--dark-text);
+    color: var(--white-color);
+    padding: 1.5rem 1rem;
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2rem;
+    font-weight: 500;
+}
+header p {
+    margin-top: 0.5rem;
+    color: var(--medium-bg);
+}
+
+main {
+    padding: 1.5rem;
+    max-width: 960px;
+    margin: 2rem auto;
+    background-color: var(--white-color);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-md);
+}
+
+section {
+    background: var(--white-color);
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    /* box-shadow: var(--shadow-sm); Optional: if main doesn't have shadow */
+}
+
+section:last-child {
+    margin-bottom: 0;
+}
+
+
+h2, h3 {
+    color: var(--dark-text);
+    margin-top: 0;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+}
+h2 { font-size: 1.5rem; }
+h3 { font-size: 1.25rem; }
+
+
+.didactic {
+    font-size: 0.9em;
+    color: var(--light-text);
+    background-color: #eef; /* Keep specific color */
+    padding: 0.75em 1em;
+    border-left: 4px solid var(--primary-color);
+    margin-bottom: 1.5em;
+    border-radius: 0 var(--border-radius) var(--border-radius) 0;
+}
+
+button {
+    background-color: var(--success-color);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1rem;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    margin-top: 10px;
+    margin-right: 8px;
+    transition: background-color 0.2s ease-in-out, opacity 0.2s ease-in-out;
+}
+
+button:hover {
+    background-color: var(--success-hover);
+}
+button:disabled {
+    opacity: 0.65;
+    cursor: not-allowed;
+}
+
+
+/* Specific button overrides */
+#btnLoadSample, #btnStartUser {
+    background-color: var(--primary-color);
+}
+#btnLoadSample:hover, #btnStartUser:hover {
+    background-color: var(--primary-hover);
+}
+#btnConfirmSample, #btnRunSimulation {
+     background-color: var(--primary-color);
+     font-weight: 500;
+}
+#btnConfirmSample:hover, #btnRunSimulation:hover {
+    background-color: var(--primary-hover);
+}
+#btnRunSimulation:disabled {
+     background-color: var(--primary-color); /* Keep color when disabled */
+}
+
+.btn-remove-persona, .btn-remove-tier, .btn-remove-state {
+    background-color: var(--danger-color);
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    margin-left: 10px;
+}
+.btn-remove-persona:hover, .btn-remove-tier:hover, .btn-remove-state:hover {
+    background-color: #c82333; /* Darker red */
+}
+
+#btnAddPersona, #btnAddTier, #btnAddState {
+    background-color: var(--secondary-color);
+}
+#btnAddPersona:hover, #btnAddTier:hover, #btnAddState:hover {
+    background-color: #5a6268; /* Darker grey */
+}
+
+
+/* Forms */
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: var(--medium-text);
+}
+
+input[type="text"], input[type="number"], select, textarea {
+    width: 100%; /* Use 100% for better responsiveness */
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: var(--border-radius);
+    border: 1px solid var(--border-color);
+    box-sizing: border-box; /* Important */
+    font-size: 1rem;
+    background-color: var(--input-bg);
+    color: var(--dark-text);
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+input[type="text"]:focus, input[type="number"]:focus, select:focus, textarea:focus {
+    border-color: var(--primary-color);
+    outline: 0;
+    box-shadow: 0 0 0 0.2rem rgba(0,123,255,.25);
+}
+
+/* Reduce width for number inputs within items */
+.persona-item input[type="number"],
+.tier-item input[type="number"] {
+    width: 80px; /* Adjust as needed */
+    display: inline-block; /* Allow labels */
+    margin-right: 10px;
+}
+.persona-item label, .tier-item label {
+    display: inline-block;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+
+
+textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Item Containers */
+.persona-item, .tier-item, .state-item {
+    border: 1px solid var(--border-color);
+    padding: 15px;
+    margin-bottom: 15px;
+    background-color: var(--light-bg);
+    border-radius: var(--border-radius);
+    box-shadow: var(--shadow-sm);
+}
+.tier-influence-item {
+     border: 1px solid var(--medium-bg);
+     padding: 15px;
+     margin-bottom: 15px;
+     background-color: var(--white-color); /* Slightly different bg */
+}
+.persona-item h4, .tier-item h4, .state-item h4, .tier-influence-item h4 {
+     margin-top: 0;
+     margin-bottom: 1rem;
+     font-size: 1.1rem;
+     color: var(--primary-color);
+     border-bottom: 1px solid var(--medium-bg);
+     padding-bottom: 0.5rem;
+}
+.persona-item h4 input, .tier-item h4 input { /* Make embedded input look less like a form field */
+     border: none;
+     padding: 0;
+     margin: 0;
+     font-size: inherit;
+     font-weight: inherit;
+     color: inherit;
+     background: none;
+     width: auto; /* Adjust as needed */
+}
+.persona-item h4 input:focus, .tier-item h4 input:focus {
+     box-shadow: none;
+     border-bottom: 1px dashed var(--primary-color);
+}
+
+.state-item input[type="text"] {
+     width: calc(100% - 110px); /* Adjust based on button width */
+     display: inline-block;
+     margin-right: 10px;
+}
+
+
+/* Tables */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    background-color: var(--white-color);
+}
+
+th, td {
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    text-align: left;
+    vertical-align: middle;
+    font-size: 0.95rem; /* Slightly smaller font in tables */
+}
+
+th {
+    background-color: var(--medium-bg);
+    font-weight: 600;
+    color: var(--dark-text);
+}
+td input[type="number"] {
+     width: 70px; /* Smaller inputs in tables */
+     padding: 5px 8px;
+     margin-bottom: 0; /* Reset margin */
+     font-size: 0.9rem;
+}
+td.row-sum {
+    font-weight: bold;
+    text-align: center;
+    min-width: 60px;
+}
+/* Added via JS if sum != 1 */
+td.row-sum.invalid-sum {
+    color: var(--danger-color) !important; /* Use important to override potential conflicts */
+    background-color: #f8d7da !important;
+}
+/* Added via JS if sum == 1 */
+td.row-sum.valid-sum {
+     color: var(--success-color) !important;
+     background-color: #d4edda !important;
+}
+
+
+/* Results Area */
+#resultsArea {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--light-bg);
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius);
+}
+#resultsArea h3, #resultsArea h4 {
+    border-bottom: none;
+    color: var(--primary-color);
+}
+#resultsArea h4 {
+     margin-top: 1.5rem;
+     font-size: 1.1rem;
+}
+#totalNPV {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--success-color);
+}
+#periodContributions {
+     list-style: none;
+     padding-left: 0;
+}
+#periodContributions li {
+     margin-bottom: 0.5rem;
+}
+
+/* Simple Bar Chart for Donor Counts */
+#donorCountsChart .chart-container {
+    margin-top: 1rem;
+    border: 1px solid var(--border-color);
+    padding: 1rem;
+    background-color: #fff;
+}
+#donorCountsChart .chart-title {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    font-weight: 500;
+}
+#donorCountsChart .chart {
+    display: flex;
+    align-items: flex-end; /* Bars grow upwards */
+    height: 250px; /* Adjust height */
+    border-bottom: 2px solid var(--dark-text);
+    padding-bottom: 5px;
+    position: relative;
+    overflow-x: auto; /* Allow horizontal scroll if too many periods */
+}
+#donorCountsChart .period-group {
+    /* flex: 1; Remove flex:1 to allow natural width */
+    min-width: 60px; /* Minimum width per period group */
+    display: flex;
+    flex-direction: column; /* Group label below bars */
+    align-items: center;
+    margin: 0 5px;
+    position: relative; /* For absolute positioning of bars */
+    height: 100%; /* Take full height */
+}
+#donorCountsChart .bars-container {
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+#donorCountsChart .bar {
+    width: 15px; /* Adjust bar width */
+    /* background-color set by state-X class */
+    margin: 0 2px;
+    position: relative; /* For tooltips or labels */
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 2px;
+    opacity: 0.85;
+    cursor: help; /* Indicate tooltip */
+}
+#donorCountsChart .bar:hover {
+    opacity: 1.0;
+}
+#donorCountsChart .bar .bar-label { /* Optional: Label on hover/focus */
+    display: none;
+    position: absolute;
+    bottom: 105%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.75); /* Semi-transparent black */
+    color: var(--white-color);
+    padding: 3px 6px;
+    border-radius: var(--border-radius);
+    font-size: 0.8em;
+    white-space: nowrap;
+    z-index: 10; /* Ensure label is on top */
+    pointer-events: none; /* Don't interfere with bar hover */
+}
+#donorCountsChart .bar:hover .bar-label,
+#donorCountsChart .bar:focus .bar-label {
+    display: block;
+}
+
+#donorCountsChart .period-label {
+    margin-top: 8px;
+    font-size: 0.85em;
+    color: var(--light-text);
+    text-align: center;
+}
+/* Define distinct colors for multiple bars per period */
+#donorCountsChart .bar.state-0 { background-color: #007bff; }
+#donorCountsChart .bar.state-1 { background-color: #6f42c1; }
+#donorCountsChart .bar.state-2 { background-color: #20c997; }
+#donorCountsChart .bar.state-3 { background-color: #fd7e14; }
+#donorCountsChart .bar.state-4 { background-color: #ffc107; }
+#donorCountsChart .bar.state-5 { background-color: #dc3545; }
+/* Add more state colors as needed */
+
+/* Legend for the chart */
+#donorCountsLegend { /* Style the legend container */
+     padding-bottom: 1rem;
+     border-bottom: 1px solid var(--border-color);
+     margin-bottom: 1rem;
+}
+.chart-legend {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    font-size: 0.9em;
+}
+.legend-item {
+    display: flex;
+    align-items: center;
+    margin-right: 15px;
+    margin-bottom: 5px;
+}
+.legend-color-box {
+    width: 15px;
+    height: 15px;
+    margin-right: 5px;
+    border-radius: 2px;
+    border: 1px solid rgba(0,0,0,0.1);
+    flex-shrink: 0; /* Prevent shrinking */
+}
+
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 1.5rem;
+    background: var(--dark-text);
+    color: var(--medium-bg);
+    margin-top: 3rem;
+}
+footer button {
+    background-color: var(--secondary-color);
+}
+footer button:hover {
+    background-color: #5a6268;
+}
+
+/* --- Input Validation Visual Cues --- */
+input.invalid-input, textarea.invalid-input, select.invalid-input {
+    border-color: var(--danger-color) !important;
+    box-shadow: 0 0 0 0.2rem rgba(220,53,69,.25) !important;
+}
+/* Style for the percentage validation message placeholder (optional) */
+#personaPercentageValidation {
+    color: var(--danger-color);
+    font-size: 0.85em;
+    margin-top: -10px; /* Adjust spacing */
+    margin-bottom: 10px;
+    height: 1em; /* Reserve space */
+}
